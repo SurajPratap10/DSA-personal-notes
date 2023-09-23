@@ -251,12 +251,10 @@
 // Q7)  Max and Min sum from sub-array of size K:
 
 // int solve(int *arr, int n, int k) {
-
 //     deque<int> maxi(k);
 //     deque<int> mini(k);
 
 //     //Addition of first k size window
-
 //     for(int i=0; i<k; i++) {
 
 //         while(!maxi.empty() && arr[maxi.back()] <= arr[i])
@@ -268,14 +266,14 @@
 //         maxi.push_back(i);
 //         mini.push_back(i);
 //     }
-//     int ans = 0;
 
+//     int ans = 0;
 //     ans += arr[maxi.front()] + arr[mini.front()];
 
 //     //remaining windows ko process karlo
 //     for(int i=k; i<n; i++) {
 
-//         //next window
+//         //next window process
 
 //         //removal
 //         while(!maxi.empty() && i - maxi.front() >=k) {
@@ -287,7 +285,6 @@
 //         }
 
 //         //addition
-
 //         while(!maxi.empty() && arr[maxi.back()] <= arr[i])
 //             maxi.pop_back();
 
