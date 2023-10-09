@@ -96,4 +96,63 @@
 //     }
 // }
 
-// Q4) 
+// Q4) Merge 2 Binary Max Heaps:
+
+// void heapify(vector<int> &arr, int n, int i){
+//     //0-Based Indexinf:
+//     int largest = i;
+//     int left = 2 *  i + 1;
+//     int right = 2 * i + 2;
+
+//     if(left < n && arr[largest] < arr[left])
+//         largest = left;
+//     if(right < n && arr[largest] < arr[right])
+//         largest = right;
+//     if(largest != i){
+//         swap(arr[largest], arr[i]);
+//         heapify(arr, n, largest);
+//     }
+// }
+// vector<int> mergeHeap(int n, int m, vector<int> &arr1, vector<int> &arr2) {
+//     //merge both arrays:
+//     vector<int> arr;
+//     for(auto i : arr1){
+//         arr.push_back(i);
+//     }
+//     for(auto i : arr2){
+//         arr.push_back(i);
+//     }
+
+//     int size = arr.size();
+//     for(int i = size/2 - 1; i >= 0; i--){
+//         heapify(arr, size, i);
+//     }
+//     return arr;
+// }
+
+// Q5) Minimum cost of Ropes:
+
+// long long connectRopes(int* arr, int n){
+// priority_queue<long long , vector<long long>, greater<long long >> pq;
+//         for(int i = 0; i < n; i++){
+//             pq.push(arr[i]);
+//         }
+
+//         long long  cost = 0;
+
+//         while(pq.size() > 1){
+//             long long int a = pq.top();
+//             pq.pop();
+
+//             long long  b = pq.top();
+//             pq.pop();
+
+//             long long  sum = a + b;
+//             cost = cost + sum;
+
+//             pq.push(sum);
+//         }
+//         return cost;
+// }
+
+// Q6) Convert BST into Heap:
