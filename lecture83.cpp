@@ -1,105 +1,126 @@
 // #include <iostream>
 // using namespace std;
 
-// Heaps Questions:
-
-// Q1) Kth Largest Sum Subarray:
-
-// int getKthLargest(vector<int> &arr, int k){
-// 	priority_queue<int,vector<int>,greater<int>> mini;
-// 	int n = arr.size();
-
-// 	for(int i = 0; i < n; i++){
-// 		int sum = 0;
-// 		for(int j = i;j < n; j++){
-//             sum += arr[j];
-// 			if(mini.size() < k){
-//                 mini.push(sum);
-// 			}else{
-// 				if(sum > mini.top()){
-//                     mini.pop();
-// 					mini.push(sum);
-// 				}
-// 			}
-// 		}
-// 	}
-// 	return mini.top();
-// }
-
-// Q2) Merge K Sorted Arrays:
+// Q1) Smallest Range in K-Sorted List:
 
 // class Node{
-//   public:
+//     public:
 //     int data;
 //     int row;
 //     int col;
-//     Node(int a, int row, int col){
-//         this -> data = a;
-//         this -> row = row;
-//         this -> col = col;
+
+//     Node(int d, int r, int c){
+//         data = d;
+//         row = r;
+//         col = c;
 //     }
 // };
+
 // class compare{
-//   public:
+//     public:
 //     bool operator()(Node* a, Node* b){
-//         return a -> data > b -> data;
+//         return a->data > b->data;
 //     }
 // };
-// vector<int> mergeKSortedArrays(vector<vector<int>>&kArrays, int k){
+
+// int kSorted(vector<vector<int>> &a, int k, int n) {
+//     int mini = INT_MAX;
+//     int maxi = INT_MIN;
 //     priority_queue<Node*, vector<Node*>, compare> pq;
-//     vector<int> ans;
+
 //     for(int i = 0; i < k; i++){
-//         Node* temp = new Node(kArrays[i][0], i, 0);
-//         pq.push(temp);
+//         int element = a[i][0];
+//         mini = min(mini, element);
+//         maxi = max(maxi, element);
+//         pq.push(new Node(element, i, 0));
 //     }
-//     while(pq.size() > 0){
+
+//     int start = mini;
+//     int end = maxi;
+
+//     while(!pq.empty()){
 //         Node* temp = pq.top();
-//         ans.push_back(temp -> data);
 //         pq.pop();
-//         int row = temp -> row;
-//         int col = temp -> col;
-//         if(col + 1 < kArrays[row].size()){
-//             Node* next = new Node(kArrays[row][col + 1], row, col + 1);
-//             pq.push(next);
+//         mini = temp->data;
+
+//         if(maxi - mini < end - start){
+//             start = mini;
+//             end = maxi;
 //         }
-//     }
-//     return ans;
-//
-
-// Q3) Merge K Sorted Lists:
-
-// #include <bits/stdc++.h>
-// class compare{
-//   public:
-//     bool operator()(Node* a, Node* b){
-//         return a -> data > b -> data;
-//     }
-// };
-// Node* mergeKLists(vector<Node*> &listArray){
-//     priority_queue<Node*, vector<Node*>, compare> pq;
-//     int k = listArray.size();
-//     if(k == 0)
-//         return NULL;
-//     for(int i = 0; i < k; i++)
-//         if(listArray[i] != NULL)
-//             pq.push(listArray[i]);
-
-//     Node* head = NULL;
-//     Node* tail = NULL;
-
-//     while(pq.size() > 0){
-//         Node* top = pq.top();
-//         pq.pop();
-//         if(top -> next != NULL)
-//             pq.push(top -> next);
-//         if(head == NULL){
-//             head = top;
-//             tail = top;
+//         if(temp->col+1 < n){
+//             maxi = max(maxi, a[temp->row][temp->col+1]);
+//             pq.push(new Node(a[temp -> row][temp -> col + 1], temp -> row,
+//             temp -> col + 1));
 //         }
 //         else{
-//             tail -> next = top;
-//             tail = top;
+//             break;
 //         }
 //     }
-//     return head;
+//     return (end-start+1);
+// }
+
+// Q2) Median in a Stream:
+
+// int signum(int a, int b) {
+// 	if(a == b)
+// 		return 0;
+// 	else if(a > b)
+// 		return 1;
+// 	else
+// 		return -1;
+// }
+// void callMedian(int element, priority_queue<int> &maxHeap,
+// priority_queue<int, vector<int>, greater<int>> &minHeap, int &median) {
+// 	switch(signum(maxHeap.size(), minHeap.size())){
+// 		case 0:{
+// 			if(element > median){
+// 				minHeap.push(element);
+// 				median = minHeap.top();
+// 			}
+// 			else{
+// 				maxHeap.push(element);
+// 				median = maxHeap.top();
+// 			}
+// 			break;
+// 		}
+// 		case 1:{
+// 			if(element > median){
+// 				minHeap.push(element);
+// 				median = (minHeap.top() + maxHeap.top()) / 2;
+// 			}
+// 			else{
+// 				minHeap.push(maxHeap.top());
+// 				maxHeap.pop();
+// 				maxHeap.push(element);
+// 				median = (minHeap.top() + maxHeap.top()) / 2;
+// 			}
+// 			break;
+// 		}
+// 		case -1:{
+// 			if(element > median){
+// 				maxHeap.push(minHeap.top());
+// 				minHeap.pop();
+// 				minHeap.push(element);
+// 				median = (minHeap.top() + maxHeap.top()) / 2;
+// 			}
+// 			else{
+// 				maxHeap.push(element);
+// 				median = (minHeap.top() + maxHeap.top()) / 2;
+// 			}
+// 			break;
+// 		}
+// 	}
+// }
+// vector<int> findMedian(vector<int> &arr, int n) {
+// 	// Write your code here
+// 	vector<int> ans;
+// 	priority_queue<int> maxHeap;
+// 	priority_queue<int, vector<int>, greater<int>> minHeap;
+// 	int median = 0;
+// 	for(int i = 0; i < n; i++)
+// 	{
+// 		callMedian(arr[i], maxHeap, minHeap, median);
+// 		ans.push_back(median);
+// 	}
+// 	return ans;
 // }
