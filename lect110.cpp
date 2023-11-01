@@ -23,7 +23,7 @@
 //     for (int i = 1; i <= n; i++) {
 //         // Traverse the edge list:
 //         for (int j = 0; j < m; j++) {
-//             int u = edges[j][0];
+//             int u = edges[i][0];
 //             int v = edges[j][1];
 //             int wt = edges[j][2];
 
@@ -34,18 +34,18 @@
 //         }
 //     }
 //     // Check for a negative cycle:
-//     bool flag = false;
+//     bool flag = 0;
 //     for (int j = 0; j < m; j++) {
-//         int u = edges[j][0];
+//         int u = edges[i][0];
 //         int v = edges[j][1];
 //         int wt = edges[j][2];
 
 //         // Condition:
 //         if (dist[u] != 1e8 && (dist[u] + wt < dist[v])) {
-//             flag = true;
+//             flag = 1;
 //         }
 //     }
-//     if (flag) {
+//     if (flag == 0) {
 //         return dist[dest]; // There is a negative cycle
 //     }
 //     return -1;
