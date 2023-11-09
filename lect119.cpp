@@ -42,45 +42,6 @@
 
 // (ii) Tabulation:
 
-#include <iostream>
-#include <vector>
-using namespace std;
-
-// (i) Recursion + Memoization:
-
-// int solve(vector<int> &weight, vector<int> &value, int index, int capacity,
-// vector<vector<int>> &dp) {
-//     // base case:
-//     if (index == 0) {
-//         if (weight[0] <= capacity) {
-//             return value[0];
-//         } else {
-//             return 0;
-//         }
-//     }
-//     if (dp[index][capacity] != -1) {
-//         return dp[index][capacity];
-//     }
-
-//     int include = 0;
-//     if (weight[index] <= capacity) {
-//         include = value[index] + solve(weight, value, index - 1, capacity -
-//         weight[index], dp);
-//     }
-//     int exclude = 0 + solve(weight, value, index - 1, capacity, dp);
-
-//     dp[index][capacity] = max(include, exclude);
-//     return dp[index][capacity];
-// }
-
-// int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) {
-//     vector<vector<int>> dp(n, vector<int>(maxWeight + 1, -1));
-//     return solve(weight, value, n - 1, maxWeight, dp); // You should pass n -
-//     1 as the index here.
-// }
-
-// (ii) Tabulation:
-
 // int solveTab(vector<int> &weight, vector<int> &value, int n, int capacity) {
 //   // create a dp array:
 //   vector<vector<int>> dp(n, vector<int>(capacity + 1, 0));
