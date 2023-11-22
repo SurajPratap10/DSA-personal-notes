@@ -3,45 +3,48 @@
 
 // DYNAMIC PROGRAMMING (DP):
 
-// Q1) Unique Binary Search Trees:
+// Guess Number Highes or Lower:
 
 // // (i) Recursion + Memoization:
-// int solve(int n, vector<int> &dp) {
-//   // base case:
-//   if (n <= 1) {
-//     return 1;
+// int solve(int s, int e, vector<vector<int>> &dp) {
+//   // base case: (invlaid range)
+//   if (s >= e) {
+//     return 0;
+//   }
+//   if (dp[s][e] != -1) {
+//     return dp[s][e];
 //   }
 
-//   if (dp[n] != -1) {
-//     return dp[n];
+//   int maxi = INT_MAX;
+//   for (int i = s; i <= e; i++) {
+//     maxi = min(maxi, i + max(solve(s, i - 1, dp), solve(i + 1, e, dp)));
 //   }
-
-//   int ans = 0;
-//   // i -> is a root node here:
-//   for (int i = 1; i <= n; i++) {
-//     ans += solve(i - 1, dp) * solve(n - i, dp);
-//   }
-//   return dp[n] = ans;
+//   return dp[s][e] = maxi;
 // }
 
 // // (ii) Tabulation:
 // int solveTab(int n) {
-//   vector<int> dp(n + 1, 0);
-//   dp[0] = dp[1] = 1;
+//   vector<vector<int>> dp(n + 2, vector<int>(n + 2, 0));
 
-//   // i -> no of nodes:
-//   for (int i = 2; i <= n; i++) {
-//     // j -> is root node here:
-//     for (int j = 1; j <= i; j++) {
-//       dp[i] += dp[j - 1] * dp[i - j];
+//   for (int s = n; s >= 1; s--) {
+//     for (int e = s; e <= n; e++) {
+//       if (s == e) {
+//         continue;
+//       } else {
+//         int maxi = INT_MAX;
+//         for (int i = s; i <= e; i++) {
+//           maxi = min(maxi, i + max(dp[s][i - 1], dp[i + 1][e]));
+//         }
+//         dp[s][e] = maxi;
+//       }
 //     }
 //   }
-//   return dp[n];
+//   return dp[1][n];
 // }
 
-// int numTrees(int n) {
-//   vector<int> dp(n + 1, -1);
-//   return solve(n, dp);
+// int getMoneyAmount(int n) {
+//   // vector<vector<int>> dp(n+1, vector<int> (n+1, -1));
+//   // return solve(1, n, dp);
 
 //   return solveTab(n);
 // }
