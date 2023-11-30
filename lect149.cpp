@@ -64,3 +64,23 @@
 //   return ans;
 // }
 
+// Q3) Check if it's possible to Survive on Island:
+
+// bool isPossibleToSurvive(int N, int S, int M) {
+//   int sunday = S / 7;
+//   int buyDays = S - S / 7;
+//   int totalFood = S * M;
+//   int ans = 0;
+
+//   if (totalFood % N == 0) {
+//     ans = totalFood / N;
+//   } else {
+//     ans = totalFood / N + 1;
+//   }
+
+//   if (ans <= buyDays) {
+//     return ans;
+//   } else {
+//     return -1;
+//   }
+// }
