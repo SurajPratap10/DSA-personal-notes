@@ -84,3 +84,41 @@
 //     return -1;
 //   }
 // }
+
+// Q4) Reverse words in a string:
+
+// string reverseWords(string , int n) {
+//   string ans = "";
+//   string temp = "";
+
+//   for (int i = n - 1; i >= 0; i--) {
+//     if (s[i] == '.') {
+//       reverse(temp.begin(), temp.end());
+//       ans = ans + temp;
+//       ans.push_back('.');
+//       temp = "";
+//     } else {
+//       temp.push_back(s[i]);
+//     }
+//   }
+//   reverse(temp.begin(), temp.end());
+//   ans = ans + temp;
+//   return ans;
+// }
+
+// Q5) Choclate Distribution Problem:
+
+// long long findMaxDiff(vector<long long> a, long long n, long long m){
+//   sort(a.begin(), a.end());
+//   int i = 0;
+//   int j = n-1;
+//   int mini = INT_MAX;
+
+//   while(j <= a.size()){
+//     int diff = a[j] - a[i];
+//     mini = min(mini, diff);
+//     i++;
+//     j++;
+//   }
+//   return mini;
+// }
