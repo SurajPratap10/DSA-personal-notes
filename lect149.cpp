@@ -150,3 +150,62 @@
 // }
 
 // Q7) Huffman Encoding:
+
+// class Node{
+// public:
+//     Node *left, *right;
+//     int freq, idx;
+//     Node(){
+//         left = right = NULL;
+//         freq = 0, idx = -1;
+//     }
+//     Node(int f, int i){
+//         left = right = NULL;
+//         freq = f, idx = i;
+//     }
+//     Node(Node *l, Node *r){
+//         left = l;
+//         right = r;
+//         freq = l->freq + r->freq, idx = -1;
+//     }
+// };
+
+// struct comp{
+//     bool operator()(const Node *n1, const Node *n2){
+//         return n1->freq > n2->freq;
+//     }
+// };
+
+// void preOrder(Node* root, vector<string> &ans, string soFar){
+//     if(root == NULL) return;
+//     if(root->left == NULL and root->right == NULL){
+//         ans[root->idx] = soFar;
+//         return;
+//     }
+//     preOrder(root->left, ans, soFar + "0");
+//     preOrder(root->right, ans, soFar + "1");
+// }
+
+// vector<string> huffmanCode(vector<int> &f)
+// {
+//     //    Write your code here
+//     int n = f.size();
+//     if(n == 1){
+//       return {"0"};
+//     }
+//     vector<Node *> arr(n);
+// 	for(int i = 0; i<n; i++) arr[i] = new Node(f[i], i);
+	
+// 	priority_queue<Node *, vector<Node *>, comp > pqu(arr.begin(), arr.end());
+	
+// 	while(pqu.size() > 1){
+// 	    Node *l = pqu.top(); pqu.pop();
+// 	    Node *r = pqu.top(); pqu.pop(); 
+// 	    Node *root = new Node(l, r);
+// 	    pqu.push(root);
+// 	}
+// 	vector<string> ans(n);
+//     Node *root = pqu.top(); pqu.pop();
+//     preOrder(root, ans, "");
+//     return ans;
+// }
