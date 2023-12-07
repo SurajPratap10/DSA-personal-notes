@@ -38,3 +38,30 @@ public:
         return ans;
     }
 };
+
+
+1716. Calculate Money in Leetcode Bank
+
+class Solution {
+public:
+    int totalMoney(int n) {
+        int sum = 0;
+        vector<int> dp(n+1);
+
+        //base case:
+        dp[0] = 0;
+
+        for(int i = 1; i <=n; i++){
+            if(i <= 7){
+                dp[i] = 1 + dp[i-1];
+            }
+            else{
+                dp[i] = 1 + dp[i-7];
+            }
+        }
+        for(int nums : dp){
+            sum = sum + nums;
+        }
+        return sum;
+    }
+};
