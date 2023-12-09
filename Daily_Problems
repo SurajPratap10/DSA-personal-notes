@@ -114,3 +114,34 @@ public:
         return ans;
     }
 };
+
+
+606. Construct String from Binary Tree
+
+class Solution {
+public:
+    // Function to recursively build the string representation of the tree
+    string buildTree(TreeNode *root){
+        // Base case: If the current node is NULL, return an empty string
+        if(root == NULL){
+            return "";
+        }
+        // If the current node is a leaf node (no left or right child), return its value as a string
+        if(root->left == NULL && root->right == NULL){
+            return to_string(root->val) ;
+        }
+        // If the current node has no right child, include only the left subtree in the representation
+        if(root->right == NULL){
+            return to_string(root->val) + "(" + buildTree(root->left) + ")";
+        }
+        // Include both left and right subtrees in the representation
+        return to_string(root->val) + "(" + buildTree(root->left) + ")" + "(" + buildTree(root->right) + ")";
+    }
+    
+    // Main function to convert a binary tree to a string
+    string tree2str(TreeNode* root) {
+        return buildTree(root);
+    }
+};
+
+
