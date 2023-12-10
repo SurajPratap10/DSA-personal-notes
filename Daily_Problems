@@ -145,3 +145,21 @@ public:
 };
 
 
+867. Transpose Matrix
+
+class Solution {
+public:
+    vector<std::vector<int>> transpose(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        //creating an auxiliary matrix (m X n)
+        vector<vector<int>> ans(m, vector<int>(n));
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                ans[j][i] = matrix[i][j];  // Swap indices to transpose the matrix
+            }
+        }
+        return ans;
+    }
+};
