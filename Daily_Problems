@@ -220,3 +220,54 @@ public:
     }
 };
 
+1582. Special Positions in a Binary Matrix
+
+class Solution {
+public:
+    int numSpecial(vector<vector<int>>& mat) {
+        int row = mat.size();
+        int col = mat[0].size();
+        int count = 0;
+
+        for(int i = 0; i < row; i++){
+            for(int j = 0; j < col; j++){
+                if(mat[i][j] == 1){
+                    int rowSum = 0;
+                    int colSum = 0;
+
+                    // Check row
+                    for(int k = 0; k < col; k++){
+                        rowSum += mat[i][k];
+                    }
+
+                    // Check column
+                    for(int k = 0; k < row; k++){
+                        colSum += mat[k][j];
+                    }
+
+                    // If the sum in the row and column is 1 (current position is the only 1)
+                    if(rowSum == 1 && colSum == 1){
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+};
+
+
+1486. XOR Operation in an Array
+
+class Solution {
+public:
+    int xorOperation(int n, int start) {
+        int arr[n];
+        int ans = 0;
+        for(int i = 0; i < n; i++){
+            arr[i] = start + 2 * i;
+            ans = ans ^ arr[i];
+        }
+        return ans;
+    }
+};
