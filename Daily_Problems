@@ -578,3 +578,30 @@ public:
 };
 
 1758. Minimum Changes To Make Alternating Binary String
+
+class Solution {
+public:
+    int minOperations(string s) {
+        int n = s.size();
+        
+        int matchCount = 0;
+        int unmatchCount = 0;
+
+
+        for(int i = 0; i < n; i++){
+            if(s[i] - '0' == i%2){
+                matchCount++;
+            }
+            else{
+                unmatchCount++;
+            }
+        }
+        return min(matchCount, unmatchCount);
+    }
+};
+
+
+
+
+
+
