@@ -692,3 +692,30 @@ public:
         return solveTab(n, k, target);
     }
 };
+
+1578. Minimum Time to Make Rope Colorful
+
+class Solution {
+public:
+    int minCost(string colors, vector<int>& neededTime){
+        int n = colors.size();
+        int ans = 0;
+        int prev = 0;
+
+        for(int i = 1; i < n; i++){
+            if(colors[prev] != colors[i]){
+                prev = i;
+            }
+            else{
+                if(neededTime[prev] <= neededTime[i]){
+                    ans = ans + neededTime[prev];
+                    prev = i;
+                }
+                else{
+                    ans = ans + neededTime[i];
+                }
+            }
+        }
+        return ans;
+    }
+};
