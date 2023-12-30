@@ -776,3 +776,33 @@ public:
         return solve(jobDifficulty, n, 0, d, dp);
     }
 };
+
+1897. Redistribute Characters to Make All Strings Equal
+
+class Solution {
+public:
+    bool makeEqual(vector<string>& words) {
+        // Create an unordered map to store the frequency of each character.
+        unordered_map<char, int> map;
+        
+        // Get the total number of strings in the vector.
+        int n = words.size();
+        
+        // Loop through each string in the vector.
+        for (auto s : words) {
+            // Loop through each character in the current string.
+            for (auto c : s) {
+                // Increment the frequency of the character in the map.
+                map[c]++;
+            }
+        }
+        // Check if the frequency of each character is a multiple of the total number of strings.
+        for (auto i : map) {
+            if (i.second % n) {
+                // If any character's frequency is not a multiple of n, return false.
+                return false;
+            }
+        }
+        return true;
+    }
+};
