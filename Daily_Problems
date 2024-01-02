@@ -852,3 +852,25 @@ public:
         return "";
     }
 };
+
+2610. Convert an Array Into a 2D Array With Conditions
+
+class Solution {
+public:
+    vector<vector<int>> findMatrix(vector<int>& nums) {
+        int n = nums.size();
+
+        vector<vector<int>> ans;
+        vector<int> freq(n+1);
+
+        for(int i : nums){
+            if(freq[i] >= ans.size()){
+                ans.push_back({});
+            }
+                ans[freq[i]].push_back(i);
+                freq[i]++;
+            
+        }
+        return ans;
+    }
+};
