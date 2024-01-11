@@ -1133,3 +1133,27 @@ public:
         return ans;
     }
 };
+
+1026. Maximum Difference Between Node and Ancestor
+
+class Solution {
+public:
+    void solve(TreeNode* root, int maxi, int mini, int &ans){
+        if(root == NULL){
+            return;
+        }
+
+        maxi = max(maxi, root->val);
+        mini = min(mini, root->val);
+        ans = max(ans, maxi-mini);
+
+        solve(root->left, maxi, mini, ans);
+        solve(root->right, maxi, mini, ans);
+    }
+
+    int maxAncestorDiff(TreeNode* root) {
+        int ans = INT_MIN;
+        solve(root, root->val, root->val, ans);
+        return ans;
+    }
+};
