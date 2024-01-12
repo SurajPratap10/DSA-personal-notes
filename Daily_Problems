@@ -1157,3 +1157,36 @@ public:
         return ans;
     }
 };
+
+1704. Determine if String Halves Are Alike
+
+class Solution {
+public:
+    bool halvesAreAlike(string s) {
+        int start = 0;
+        int end = s.size()-1;
+        int cnt1 = 0;   // counts no of vowels in left half
+        int cnt2 = 0;  // counts no of vowels in right half
+
+        while(start < end){
+            if(s[start]=='a' || s[start]=='e' || s[start]=='i'||s[start]=='o'||s[start]=='u' ||
+               s[start]=='A' || s[start]=='E' || s[start]=='I'||s[start]=='O'||s[start]=='U'){
+                   
+                   cnt1++;  // left++
+               }
+            if(s[end]=='a' || s[end]=='e' || s[end]=='i'||s[end]=='o'||s[end]=='u' ||
+               s[end]=='A' || s[end]=='E' || s[end]=='I'||s[end]=='O'||s[end]=='U'){
+
+                   cnt2++; // right++
+               }
+            start++;
+            end--;
+        }
+        if(cnt1 == cnt2){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
