@@ -1229,3 +1229,28 @@ public:
 
     }
 };
+
+
+116. Populating Next Right Pointers in Each Node
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if(root == NULL){
+            return NULL;
+        }
+        // Connect left node with right node:
+        if(root->left != NULL){
+            root->left->next = root->right;
+        }
+        // Connect node's right child with next node's left child:
+        if(root->right != NULL && root->next != NULL){
+            root->right->next = root->next->left;
+        }
+        // Join Subtrees:
+        connect(root->left);
+        connect(root->right);
+
+        return root;
+    }
+};
