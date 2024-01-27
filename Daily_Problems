@@ -1378,3 +1378,19 @@ public:
         return solveTab(text1, text2);
     }
 };
+
+1512. Number of Good Pairs
+
+class Solution {
+public:
+    int numIdenticalPairs(vector<int>& nums) {
+        unordered_map<int, int> m;
+        int ans = 0;
+
+        for(int i : nums){
+            ans = ans + m[i];
+            m[i]++;
+        }
+        return ans;
+    }
+};
