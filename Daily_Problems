@@ -1505,3 +1505,19 @@ public:
     }
 };
 
+
+168. Excel Sheet Column Title
+
+class Solution {
+public:
+    string convertToTitle(int colNum) {
+        string result  = "";
+
+        while(colNum > 0){
+            colNum--;
+            result = char(colNum % 26 + 'A') + result;
+            colNum /= 26;
+        }
+        return result;
+    }
+};
