@@ -1521,3 +1521,24 @@ public:
         return result;
     }
 };
+
+
+387. First Unique Character in a String
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        int n = s.size();
+        unordered_map<char, int> mp;
+
+        for(auto freq : s){
+            mp[freq]++;           // store freq and populate the map...
+        }
+        for(int i = 0; i < n; i++){
+            if(mp[s[i]] == 1){    // if freq of char is 1 then return it's index...
+                return i;
+            }
+        }
+        return -1;
+    }
+};
