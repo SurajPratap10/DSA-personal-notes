@@ -1542,3 +1542,28 @@ public:
         return -1;
     }
 };
+
+647. Palindromic Substrings
+
+class Solution {
+public: 
+    int solve(string s, int i, int j){
+        int count = 0;
+        while(i >= 0 && j <= s.size() && s[i] == s[j]){
+            count++;
+            i--;
+            j++;
+        }
+        return count;
+    }
+    int countSubstrings(string s) {
+        int totalCount = 0;
+        for(int mid = 0; mid < s.size(); mid++){
+            int oddAns = solve(s, mid, mid);
+            int evenAns = solve(s, mid, mid+1);
+
+            totalCount = totalCount + oddAns + evenAns;
+        }
+        return totalCount;
+    }
+};
