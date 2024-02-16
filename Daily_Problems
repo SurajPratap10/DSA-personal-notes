@@ -1567,3 +1567,41 @@ public:
         return totalCount;
     }
 };
+
+
+1481. Least Number of Unique Integers after K Removals
+
+class Solution {
+public:
+    int findLeastNumOfUniqueInts(vector<int>& arr, int k) {
+        unordered_map<int, int> mp;
+
+        for(auto it : arr){
+            mp[it]++;
+        }
+
+        vector<pair<int, int>>element;
+
+        for(auto it : mp){
+            element.push_back({it.second, it.first});
+        }
+
+        sort(element.begin(), element.end());
+
+        int ans = mp.size();
+
+        for(auto it:element){
+            int freq = it.first;
+
+            if(freq <= k){
+                k -= freq;
+                ans--;
+            }
+            else{
+                k=0;
+                break;
+            }
+        }
+        return ans;
+    }
+};
