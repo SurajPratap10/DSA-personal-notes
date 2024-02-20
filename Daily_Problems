@@ -1618,4 +1618,14 @@ public:
 };
 };
 
-1470. Shuffle the Array
+268. Missing Number
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+    int n=nums.size();
+    int sumToN=(n*(n+1))/2;
+    int sumOfArray=accumulate(nums.begin(), nums.end(), 0);
+    return sumToN - sumOfArray;
+    }
+};
