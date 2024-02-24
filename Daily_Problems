@@ -1670,3 +1670,33 @@ public:
     return ans;
     }
 };
+
+257. Binary Tree Paths
+
+class Solution {
+public:
+    void dfs(TreeNode* root, vector<string> &ans, string path){
+        if(root == NULL){
+            return;
+        }
+        path = path + to_string(root->val);
+        
+        if(root->left == NULL && root->right == NULL){
+            ans.push_back(path);
+        }
+
+        else{
+            path = path + "->";
+            dfs(root->left, ans, path);
+            dfs(root->right, ans, path);
+        }
+    }
+
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> ans;
+        string path;
+        dfs(root, ans, path);
+
+        return ans;
+    }
+};
