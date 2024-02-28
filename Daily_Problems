@@ -1731,3 +1731,30 @@ public:
         }
     }
 };
+
+513. Find Bottom Left Tree Value
+
+class Solution {
+public:
+    void helperFunc(TreeNode* root, int depth, int &maxDepth, int &leftMostVal){
+        if(root == NULL){
+            return;
+        }
+
+        if(depth > maxDepth){
+            leftMostVal = root->val;
+            maxDepth = depth;
+        }
+
+        helperFunc(root->left, depth + 1, maxDepth, leftMostVal);
+        helperFunc(root->right, depth + 1, maxDepth, leftMostVal);
+    }
+
+    int findBottomLeftValue(TreeNode* root) {
+        int maxDepth = -1;
+        int leftMostVal;
+        helperFunc(root, 0, maxDepth, leftMostVal);
+
+        return leftMostVal;
+    }
+};
