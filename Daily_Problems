@@ -1951,3 +1951,18 @@ public:
         return root;
     }
 };
+
+171. Excel Sheet Column Number
+
+class Solution {
+public:
+    int titleToNumber(string columnTitle) {
+        int ans = 0;
+        int n = columnTitle.size();
+        for(auto c : columnTitle){
+            int val = c - 'A' + 1;
+            ans = ans*26 + val;
+        }
+        return ans;
+    }
+};
