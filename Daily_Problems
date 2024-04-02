@@ -2106,3 +2106,37 @@ public:
         return maxLen;
     }
 };
+
+205. Isomorphic Strings
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map<char, char> mp1; 
+        unordered_map<char, char> mp2; 
+
+        if(s.size() != t.size()){
+            return false; // If the sizes are different, they cannot be isomorphic
+        }
+        
+        for(int i = 0; i < s.size(); i++){
+            char x = s[i];
+            char y = t[i];
+
+            // Checking if the mappings already exist
+            if (mp1.find(x) != mp1.end() && mp1[x] != y) {
+                return false; // Mapping conflicts
+            }
+
+            if (mp2.find(y) != mp2.end() && mp2[y] != x) {
+                return false; // Mapping conflicts
+            }
+
+            // Creating mappings
+            mp1[x] = y;
+            mp2[y] = x;
+        }
+        
+        return true; // Strings are isomorphic
+    }
+};
