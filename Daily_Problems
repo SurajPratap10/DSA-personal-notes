@@ -2140,3 +2140,24 @@ public:
         return true; // Strings are isomorphic
     }
 };
+
+108. Convert Sorted Array to Binary Search Tree
+
+class Solution {
+public:
+    TreeNode* newBST(vector<int> &arr, int s, int e){
+        if(s > e){
+            return NULL;
+        }
+        int mid = (s+e)/2;
+
+        TreeNode* dummy = new TreeNode(arr[mid]);
+        dummy->left = newBST(arr, s, mid-1);
+        dummy->right = newBST(arr, mid+1, e);
+        return dummy;
+    }
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        int n = nums.size();
+        return newBST(nums, 0, n-1);
+    }
+};
