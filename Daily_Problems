@@ -2161,3 +2161,14 @@ public:
         return newBST(nums, 0, n-1);
     }
 };
+
+2119. A Number After a Double Reversal
+
+class Solution {
+public:
+    bool isSameAfterReversals(int num) {
+        if(num%10==0 and num!=0)
+            return false;
+        return true;
+    }
+};
