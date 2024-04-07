@@ -2172,3 +2172,46 @@ public:
         return true;
     }
 };
+
+678. Valid Parenthesis String
+
+class Solution {
+public:
+    bool checkValidString(string s) {
+        stack<int> left, star;
+
+        for(int i = 0; i < s.length(); i++){
+            if(s[i] == '('){
+                left.push(i);
+            }
+            else if(s[i] == '*'){
+                star.push(i);
+            }
+            else{ // s[i] == ')'
+                if(!left.empty()){
+                    left.pop();
+                }
+                else if(!star.empty()){
+                    star.pop();
+                }
+                else{
+                    return false; // No matching '(' or '*' found
+                }
+            }
+        }
+
+        while(!left.empty()){
+            if (star.empty()){
+                return false;
+            }
+            if(star.top() > left.top()){ // Matching '(' found
+                star.pop();
+                left.pop();
+            }
+            else{
+                return false;
+            }
+        }
+        return true; // All '(' matched
+    }
+};
