@@ -2268,3 +2268,35 @@ public:
         return v;
     }
 };
+
+129. Sum Root to Leaf Numbers
+
+class Solution {
+public:
+    bool isLeafNode(TreeNode* root){
+        if(root->left == NULL && root->right == NULL){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    int sumNumbers(TreeNode* root, int curr){
+        if(root == NULL){
+            return 0;
+        }
+
+        curr = curr * 10 + root->val;  // Path: 1 -> 2 -> 3. Initially, curr is 0. When you visit node 1, curr becomes 1. When you visit node 2, curr becomes 12. Finally, when you visit node 3, curr becomes 123...
+
+        if(isLeafNode(root)){
+            return curr;   // Terminates at Leaf Node...
+        }
+
+        return sumNumbers(root->left, curr) + sumNumbers(root->right, curr);
+    }
+
+    int sumNumbers(TreeNode* root) {
+        return sumNumbers(root, 0);
+    }
+};
