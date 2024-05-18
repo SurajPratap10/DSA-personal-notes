@@ -2468,3 +2468,25 @@ public:
         return root;
     }
 };
+
+979. Distribute Coins in Binary Tree
+
+class Solution {
+public:
+    int solveDFS(TreeNode* root, int &moves){
+        if(root == NULL){
+            return 0;
+        }
+        int left = solveDFS(root->left, moves);
+        int right = solveDFS(root->right, moves);
+
+        moves += abs(left) + abs(right);
+        return root->val + left + right - 1;
+    }
+
+    int distributeCoins(TreeNode* root) {
+        int moves = 0;
+        solveDFS(root, moves);
+        return moves;
+    }
+};
