@@ -2507,3 +2507,25 @@ public:
         return -1;
     }
 };
+
+
+
+3162. Find the Number of Good Pairs I
+
+class Solution {
+public:
+    int numberOfPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+        int count = 0;
+        int divi = 0;
+
+        for(auto val1 : nums1){
+            for(auto val2 : nums2){
+                divi = val2 * k;
+                if(val1 % divi == 0){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+};
