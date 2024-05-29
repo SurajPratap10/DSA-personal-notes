@@ -2529,3 +2529,24 @@ public:
         return count;
     }
 };
+
+
+1404. Number of Steps to Reduce a Number in Binary Representation to One
+
+class Solution {
+public:
+    int numSteps(string s) {
+        int n = s.size();
+        int cy = 0;
+        int ans = n - 1;
+
+        for(int i = n-1; i > 0; i--){
+        // Character to Integer Conversion: If s[i] is '0', then s[i] - '0' is 48 - 48 = 0. ASCII of 0 is '48'
+            if((s[i] - '0') + cy == 1){ 
+                ans++;
+                cy = 1;
+            }
+        }
+        return ans + cy;
+    }
+};
