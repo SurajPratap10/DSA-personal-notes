@@ -2674,4 +2674,24 @@ public:
     }
 };
 
-s
+945. Minimum Increment to Make Array Unique
+
+class Solution {
+public:
+    int minIncrementForUnique(vector<int>& nums) {
+        map<int, int> frequency;
+        int ans = 0;
+
+        for(auto &n : nums){
+            frequency[n]++;
+        }
+
+        for(auto &n : frequency){
+            ans += n.second-1;
+            if(n.second-1 > 0){
+                frequency[n.first+1] += n.second-1;
+            }
+        }
+        return ans;
+    }
+};
