@@ -2695,3 +2695,19 @@ public:
         return ans;
     }
 };
+
+
+1929. Concatenation of Array
+
+class Solution {
+public:
+    vector<int> getConcatenation(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> ans(nums);  //makes copy of array initially in ans vector -> [1,2,1]
+
+        for(int i = 0; i < n; i++){
+            ans.push_back(nums[i]);
+        }
+        return ans;  // gives [1,2,1,1,2,1]
+    }
+};
