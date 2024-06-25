@@ -2874,3 +2874,24 @@ public:
 //     }
 // };
 
+1038. Binary Search Tree to Greater Sum Tree
+
+class Solution {
+private:
+    int sum = 0;
+
+    void traverseBST(TreeNode* root){
+        if(root != NULL){
+            traverseBST(root->right);
+            sum = sum + root->val;
+            root->val = sum;
+            traverseBST(root->left);
+        }
+    }
+public:
+    TreeNode* bstToGst(TreeNode* root) {
+
+        traverseBST(root);
+        return root;
+    }
+};
