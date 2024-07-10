@@ -3033,3 +3033,24 @@ public:
         }
     }
 };
+
+1598. Crawler Log Folder
+
+class Solution {
+public:
+    int minOperations(vector<string>& logs) {
+        int fDepth = 0;
+
+        for(const string & log : logs){
+            if(log == "../"){
+                if(fDepth > 0){
+                    fDepth--;
+                }
+            }
+            else if(log != "./"){
+                fDepth++;
+            }
+        }
+        return fDepth;
+    }
+};
