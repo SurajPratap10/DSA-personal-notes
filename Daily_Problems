@@ -3054,3 +3054,24 @@ public:
         return fDepth;
     }
 };
+
+404. Sum of Left Leaves
+
+class Solution {
+public:
+    int sumOfLeftLeaves(TreeNode* root) {
+        if(root == 0){
+            return 0;
+        }
+        int sum = 0;
+
+        if(root->left && root->left->left == 0 && root->left->right == 0){
+            sum = sum + root->left->val;
+        }
+
+        sum = sum + sumOfLeftLeaves(root->left);
+        sum = sum + sumOfLeftLeaves(root->right);
+
+        return sum;
+    }
+};
