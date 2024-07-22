@@ -3094,3 +3094,25 @@ public:
         return s;
     }
 };
+
+2418. Sort the People
+
+class Solution {
+public:
+    vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
+        int n = names.size();
+        unordered_map<int, string> mp;
+
+        for(int i = 0; i < n; i++){   // i) mapping
+            mp[heights[i]] = names[i];
+        }
+
+        sort(heights.rbegin(), heights.rend());  // ii) sorting
+
+        for(int i = 0; i < n; i++){    // iii) filling
+            names[i] = mp[heights[i]];
+        }
+
+        return names;
+    }
+};
