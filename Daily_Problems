@@ -3139,3 +3139,26 @@ public:
         return count;
     }
 };
+
+1653. Minimum Deletions to Make String Balanced
+
+class Solution {
+public:
+    int minimumDeletions(string s) {
+        int ans = 0;
+        int count = 0;
+
+        for(char ch : s){
+            if(ch == 'b'){
+                count++;
+            }
+// if we encounter a and count still exists that means we have to delete either a or b so we will reduce count by 1 and increment our ans...
+
+            else if(count){ 
+                ans++;
+                count--;
+            }
+        }
+        return ans;
+    }
+};
